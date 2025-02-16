@@ -1,0 +1,48 @@
+<mat-tab-group class="tabs">
+  <!-- Aba de Pesquisa -->
+  <mat-tab label="Pesquisa">
+    <div class="pesquisa">
+      <button mat-raised-button color="primary" (click)="onPesquisar()">Pesquisar</button>
+
+      <table mat-table [dataSource]="cdis" class="mat-elevation-z8 table">
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef> Data </th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.data }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.valor |  percent:'1.2-2'  }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-tab>
+
+  <!-- Aba de Novo -->
+  <mat-tab label="Novo">
+    <div class="cdi">
+      <form [formGroup]="cdiForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Data</mat-label>
+          <input matInput id="dataCDI" type="date" formControlName="data" />
+          <mat-error *ngIf="cdiForm.get('data')?.invalid && cdiForm.get('data')?.touched">
+            Data é obrigatória.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Valor</mat-label>
+          <input matInput id="valorCDI" type="number" formControlName="valor" />
+          <mat-error *ngIf="cdiForm.get('valor')?.invalid && cdiForm.get('valor')?.touched">
+            Valor é obrigatório e deve ser ≥ 0.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="cdiForm.invalid">Salvar</button>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Calculadora de Rentabilidade Diária</h2>
+
+  <div class="input-group">
+    <label for="cdi">CDI (% a.a.)</label>
+    <input type="number" id="cdi" [(ngModel)]="cdi" (input)="calcularRentabilidade()" />
+  </div>
+
+  <div class="input-group">
+    <label for="selic">SELIC (% a.a.)</label>
+    <input type="number" id="selic" [(ngModel)]="selic" (input)="calcularRentabilidade()" />
+  </div>
+
+  <div class="input-group">
+    <label for="rentabilidadeCDI">Rentabilidade CDI</label>
+    <input type="number" id="rentabilidadeCDI" [(ngModel)]="rentabilidadeCDI" (input)="calcularRentabilidade()" />
+  </div>
+
+  <div class="input-group">
+    <label for="valor">Valor Investido (R$)</label>
+    <input type="number" id="valor" [(ngModel)]="valorInvestido" (input)="calcularRentabilidade()" />
+  </div>
+
+  <div class="resultado">
+    <p><strong>Rentabilidade Diária:</strong> R$ {{ rentabilidadeDiaria | number:'1.2-2' }}</p>
+    <p><strong>Valor final:</strong> R$ {{ valorFinal | number:'1.2-2' }}</p>
+  </div>
+</div>

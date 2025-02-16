@@ -1,0 +1,60 @@
+.tabs {
+  .mat-tab-label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .mat-tab-body {
+    padding: 20px;
+  }
+
+  .input-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .pesquisa {
+    .table {
+      width: 100%;
+      margin-top: 16px;
+      .mat-header-cell {
+        background-color: #f0f0f0;
+        font-weight: 600;
+      }
+
+      .mat-cell {
+        padding: 10px;
+      }
+    }
+  }
+
+  .configuracao-ativo {
+    .mat-form-field {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    button {
+      margin-top: 16px;
+      display: block;
+      width: 100%;
+    }
+
+    mat-checkbox {
+      margin-top: 16px;
+    }
+  }
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.mat-tab-body {
+  background-color: #fafafa;
+  padding: 16px;
+}
+
+.mat-tab-label-active {
+  color: #3f51b5;
+}

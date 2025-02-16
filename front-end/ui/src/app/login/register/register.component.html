@@ -1,0 +1,24 @@
+<div class="login-container register-container">
+  <div class="login-header">
+    <h2>Criar Novo Usuário</h2>
+  </div>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input type="text" id="login" name="login" [(ngModel)]="registerData.login" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="registerForm.invalid">Criar Usuário</button>
+    </div>
+  </form>
+
+  <div class="login-footer">
+    <p>Já tem uma conta? <a [routerLink]="'/login'">Login</a></p> <!-- Adiciona o routerLink -->
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<mat-tab-group class="tabs">
+  <!-- Aba de Pesquisa -->
+  <mat-tab label="Pesquisa">
+    <div class="pesquisa">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Buscar por nome</mat-label>
+        <input matInput [(ngModel)]="filtroNome" placeholder="Digite o nome do ativo..." />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="onPesquisar()">Pesquisar</button>
+
+      <table mat-table [dataSource]="ativos" class="mat-elevation-z8 table">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let ativo"> {{ ativo.nome }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rendimentoDia">
+          <th mat-header-cell *matHeaderCellDef> Rendimento/Dia </th>
+          <td mat-cell *matCellDef="let ativo"> {{ ativo.rendimentoDia / 100 |  percent:'1.2-2'  }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rendimentoMes">
+          <th mat-header-cell *matHeaderCellDef> Rendimento/Mês </th>
+          <td mat-cell *matCellDef="let ativo"> {{ ativo.rendimentoMes / 100 |  percent:'1.2-2'  }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="somenteDiasUteis">
+          <th mat-header-cell *matHeaderCellDef> Dias Úteis </th>
+          <td mat-cell *matCellDef="let ativo"> {{ ativo.somenteDiasUteis ? 'Sim' : 'Não' }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-tab>
+
+  <!-- Aba de Novo -->
+  <mat-tab label="Novo">
+    <div class="configuracao-ativo">
+      <form [formGroup]="configuracaoAtivoForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Nome</mat-label>
+          <input matInput id="nome" formControlName="nome" />
+          <mat-error *ngIf="configuracaoAtivoForm.get('nome')?.invalid && configuracaoAtivoForm.get('nome')?.touched">
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Rendimento por Dia</mat-label>
+          <input matInput id="rendimentoDia" type="number" formControlName="rendimentoDia" />
+          <mat-error *ngIf="configuracaoAtivoForm.get('rendimentoDia')?.invalid && configuracaoAtivoForm.get('rendimentoDia')?.touched">
+            Rendimento por Dia é obrigatório e deve ser ≥ 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Rendimento por Mês</mat-label>
+          <input matInput id="rendimentoMes" type="number" formControlName="rendimentoMes" />
+          <mat-error *ngIf="configuracaoAtivoForm.get('rendimentoMes')?.invalid && configuracaoAtivoForm.get('rendimentoMes')?.touched">
+            Rendimento por Mês é obrigatório e deve ser ≥ 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="somenteDiasUteis">Somente Dias Úteis</mat-checkbox>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="configuracaoAtivoForm.invalid">Salvar</button>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
