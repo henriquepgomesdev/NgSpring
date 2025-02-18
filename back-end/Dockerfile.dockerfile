@@ -1,5 +1,8 @@
-# Use uma imagem do Java
+# Use uma imagem do OpenJDK
 FROM openjdk:17-jdk-alpine
+
+# Instale o Maven
+RUN apk update && apk add maven
 
 # Defina o diretório de trabalho
 WORKDIR /app
@@ -7,7 +10,7 @@ WORKDIR /app
 # Copie os arquivos do projeto para o container
 COPY . .
 
-# Instale as dependências do projeto (se usar Maven)
+# Instale as dependências do projeto (executando mvn clean install)
 RUN mvn clean install
 
 # Exponha a porta em que o app vai rodar
