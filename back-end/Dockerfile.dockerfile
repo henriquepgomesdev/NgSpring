@@ -5,7 +5,7 @@ FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app/back-end
 
 # Copie os arquivos da pasta back-end para o diretório de trabalho na imagem
-COPY back-end/ /app/back-end
+COPY ./back-end/ /app/back-end
 
 # Execute o Maven clean install no diretório onde está o pom.xml
 RUN mvn clean install
