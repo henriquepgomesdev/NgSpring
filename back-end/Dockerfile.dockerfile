@@ -7,8 +7,11 @@ RUN apk update && apk add maven
 # Defina o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos do projeto para o container
+# Copie todos os arquivos do projeto (inclusive pom.xml)
 COPY . .
+
+# Liste os arquivos no diretório para verificar a presença do pom.xml
+RUN ls -la /app
 
 # Instale as dependências do projeto (executando mvn clean install)
 RUN mvn clean install
