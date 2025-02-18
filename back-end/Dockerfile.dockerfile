@@ -1,5 +1,5 @@
-# Usando a imagem base do Maven
-FROM maven:3.6.3-jdk-11 AS build
+# Usando a imagem base do Maven com JDK 17
+FROM maven:3.6.3-jdk-17 AS build
 
 # Defina o diretório de trabalho para a pasta onde está o pom.xml
 WORKDIR /app/back-end
