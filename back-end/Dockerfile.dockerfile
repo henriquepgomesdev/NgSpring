@@ -13,5 +13,15 @@ RUN mvn clean install
 # Exponha a porta que o app vai rodar, se necessário
 EXPOSE 8080
 
-# Comando para rodar o aplicativo
-CMD ["java", "-jar", "target/seu-arquivo.jar"]
+
+# Usar a imagem oficial do Tomcat como base
+FROM tomcat:9.0
+
+# Copiar o arquivo .war para a pasta webapps do Tomcat
+COPY target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+
+# Expõe a porta do Tomcat
+EXPOSE 8080
+
+# O Tomcat vai iniciar automaticamente ao rodar o contêiner
+CMD ["catalina.sh", "run"]
