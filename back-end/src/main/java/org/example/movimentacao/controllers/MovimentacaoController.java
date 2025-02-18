@@ -2,7 +2,9 @@ package org.example.movimentacao.controllers;
 
 import jakarta.validation.Valid;
 import org.example.movimentacao.domain.Movimentacao;
+import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.MovimentacaoInput;
+import org.example.movimentacao.model.MovimentacaoOutput;
 import org.example.movimentacao.service.MovimentacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("movimentacao")
@@ -20,6 +25,20 @@ public class MovimentacaoController {
 
     @Autowired
     private MovimentacaoService service;
+
+    @GetMapping("/tipos-movimentacao")
+    public List<Map<String, Object>> listarTiposMovimentacao() {
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (TipoMovimentacao tipo : TipoMovimentacao.values()) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", tipo.getId());
+            map.put("descricao", tipo.getDescription());
+            result.add(map);
+        }
+
+        return result;
+    }
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid MovimentacaoInput input) {
@@ -30,9 +49,9 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Movimentacao>> list() {
+    public ResponseEntity<List<MovimentacaoOutput>> list() {
         System.out.println("Requisicao ok");
-        return ResponseEntity.ok(service.getAll());
+        return ResponseEntity.ok(service.getAllMovimentacoes());
     }
 
 }

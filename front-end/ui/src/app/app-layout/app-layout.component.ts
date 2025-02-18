@@ -34,6 +34,10 @@ export class AppLayoutComponent implements OnInit {
       this.currentPageTitle = 'CDI';
     }  else if (route.includes('/calculadora')) {
       this.currentPageTitle = 'Calculadora';
+    } else if (route.includes('/movimentacao')) {
+      this.currentPageTitle = 'Movimentacao';
+    }  else if (route.includes('/saldo-ativo')) {
+      this.currentPageTitle = 'Saldo por ativo';
     }
     // Adicione mais condições conforme necessário para outras páginas
   }

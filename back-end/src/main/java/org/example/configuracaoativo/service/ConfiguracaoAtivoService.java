@@ -27,6 +27,10 @@ public class ConfiguracaoAtivoService {
         repository.save(new ConfiguracaoAtivo(input));
     }
 
+    public ConfiguracaoAtivo findById(Long id){
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Configuração não encontrada!"));
+    }
+
     public List<ConfiguracaoAtivo> getAll() {
         return repository.findAll();
     }

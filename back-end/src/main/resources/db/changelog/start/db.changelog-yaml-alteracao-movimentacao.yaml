@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-valorAplicado
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            columnExists:
+              tableName: movimentacao
+              columnName: valor_aplicado
+      changes:
+        - addColumn:
+            tableName: movimentacao
+            columns:
+              - column:
+                  name: valor_aplicado
+                  type: DECIMAL(19, 4)

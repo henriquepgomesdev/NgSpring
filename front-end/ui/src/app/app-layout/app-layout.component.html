@@ -4,18 +4,19 @@
       <a mat-list-item [routerLink]="['/configuracao-ativo']" routerLinkActive="active">Configuração ativo</a>
       <a mat-list-item [routerLink]="['/cdi']" routerLinkActive="active">CDI</a>
       <a mat-list-item [routerLink]="['/selic']" routerLinkActive="active">Selic</a>
+      <a mat-list-item [routerLink]="['/movimentacao']" routerLinkActive="active">Movimentação</a>
       <a mat-list-item [routerLink]="['/calculadora']" routerLinkActive="active">Calculadora</a>
-      <!-- Adicione outros links aqui conforme necessário -->
+      <a mat-list-item [routerLink]="['/saldo-ativo']" routerLinkActive="active">Saldo por ativo</a>
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
-    <!-- Cabeçalho com o nome da tela -->
+  <mat-sidenav-content class="content">
     <div class="header">
       <h2>{{ currentPageTitle }}</h2>
     </div>
 
-    <!-- Conteúdo principal da página -->
-    <router-outlet></router-outlet>
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

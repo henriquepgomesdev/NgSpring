@@ -23,6 +23,9 @@ import { MatCardModule } from '@angular/material/card';
 import { SelicComponent } from './selic/selic.component';
 import { CdiComponent } from './cdi/cdi.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
+import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
+import { MatSelectModule } from '@angular/material/select';
+import { SaldoAtivoComponent } from './saldo-ativo/saldo-ativo.component';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
     SelicComponent,
     CdiComponent,
     CalculadoraComponent,
+    MovimentacaoComponent,
+    SaldoAtivoComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -46,6 +51,7 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
     MatSidenavModule,  // Importa o módulo do mat-sidenav
     MatListModule,     // Importa o módulo do mat-nav-list
     MatButtonModule,
+    MatSelectModule,
     MatTabsModule,
     MatTableModule,
     MatFormFieldModule,

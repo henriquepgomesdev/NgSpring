@@ -49,6 +49,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.6.0</version> <!-- Versão mais recente -->
             <scope>runtime</scope>
         </dependency>
 
@@ -79,6 +80,7 @@
             <artifactId>modelmapper</artifactId>
             <version>3.2.0</version>
         </dependency>
+
     </dependencies>
 
 

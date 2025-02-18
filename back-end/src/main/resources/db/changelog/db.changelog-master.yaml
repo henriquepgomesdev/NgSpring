@@ -9,3 +9,11 @@ databaseChangeLog:
       file: db/changelog/start/db.changelog-yaml-cdi.yaml
   - include:
       file: db/changelog/start/db.changelog-yaml-selic.yaml
+  - include:
+      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao.yaml
+  - include:
+      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-2.yaml
+  - include:
+      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-data-aplicacao.yaml
+  - include:
+      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-data-vencimento.yaml

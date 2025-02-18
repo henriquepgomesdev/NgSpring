@@ -11,6 +11,8 @@ import { ConfiguracaoAtivoComponent } from './configuracao-ativo/configuracao-at
 import { CdiComponent } from './cdi/cdi.component';
 import { SelicComponent } from './selic/selic.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
+import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
+import { SaldoAtivoComponent } from './saldo-ativo/saldo-ativo.component';
 
 
 export const routes: Routes = [
@@ -27,7 +29,9 @@ export const routes: Routes = [
       { path: 'configuracao-ativo', component: ConfiguracaoAtivoComponent },
       { path: 'cdi', component: CdiComponent },
       { path: 'selic', component: SelicComponent },
+      { path: 'movimentacao', component: MovimentacaoComponent },
       { path: 'calculadora', component: CalculadoraComponent },
+      { path: 'saldo-ativo', component: SaldoAtivoComponent },
     ]
   },
   { path: '**', redirectTo: '/login' } // Redireciona para login para rotas não encontradas

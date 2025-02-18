@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-valorAplicado
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            columnExists:
+              tableName: movimentacao
+              columnName: data_aplicacao
+      changes:
+        - addColumn:
+            tableName: movimentacao
+            columns:
+              - column:
+                  name: data_aplicacao
+                  type: DATE

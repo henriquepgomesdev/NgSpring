@@ -22,7 +22,7 @@ export class ConfiguracaoAtivoComponent {
 
   displayedColumns: string[] = ['nome', 'rendimentoDia', 'rendimentoMes', 'somenteDiasUteis'];
 
-  constructor(private fb: FormBuilder, private configuracaoAtivoService : ConfiguracaoAtivoService) {
+  constructor(private fb: FormBuilder, private configuracaoAtivoService: ConfiguracaoAtivoService) {
     this.configuracaoAtivoForm = this.fb.group({
       nome: ['', Validators.required],
       rendimentoDia: [0, [Validators.required, Validators.min(0)]],
@@ -46,19 +46,16 @@ export class ConfiguracaoAtivoComponent {
   }
 
   onPesquisar() {
-
-        const configuracaoAtivoInput = this.configuracaoAtivoForm.value;
-        this.configuracaoAtivoService.getAll().subscribe(
-          response => {
-            console.log('Usuário registrado com sucesso!', response);
-            this.ativos = response;
-          },
-          error => {
-            console.error('Erro ao registrar usuário', error);
-          }
-        );
-
-    }
+    this.configuracaoAtivoService.getAll().subscribe(
+      response => {
+        console.log('Usuário registrado com sucesso!', response);
+        this.ativos = response;
+      },
+      error => {
+        console.error('Erro ao registrar usuário', error);
+      }
+    );
+  }
 
   ativosFiltrados() {
     return this.ativos.filter(ativo =>

@@ -1,25 +1,21 @@
 package org.example.movimentacao.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Getter
-public enum TipoMovimentacao {
+public enum TipoMovimentacaoFinanceiro {
 
-    APORTE(1, "Aporte", TipoMovimentacaoFinanceiro.ENTRADA),
-    RENDIMENTO(2, "Rendimento",  TipoMovimentacaoFinanceiro.ENTRADA),
-    RESGATE(3, "Resgate",  TipoMovimentacaoFinanceiro.SAIDA);
+    ENTRADA(1, "Entrada"),
+    SAIDA(2, "Saída");
 
     private final int id;
     private final String description;
-    private final TipoMovimentacaoFinanceiro tipoMovimentacaoFinanceiro;
 
     @JsonValue
     public int getId() {
@@ -27,8 +23,8 @@ public enum TipoMovimentacao {
     }
 
     @JsonCreator
-    public static TipoMovimentacao fromId(int id) {
-        return Stream.of(TipoMovimentacao.values())
+    public static TipoMovimentacaoFinanceiro fromId(int id) {
+        return Stream.of(TipoMovimentacaoFinanceiro.values())
                 .filter(tipo -> tipo.id == id)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("TipoMovimentacao inválido: " + id));

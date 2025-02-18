@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-movimentacaoOrigem
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            columnExists:
+              tableName: movimentacao
+              columnName: movimentacao_origem_id
+      changes:
+        - addColumn:
+            tableName: movimentacao
+            columns:
+              - column:
+                  name: movimentacao_origem_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: movimentacao
+            baseColumnNames: movimentacao_origem_id
+            constraintName: fk_movimentacao_origem
+            referencedTableName: movimentacao
+            referencedColumnNames: id

@@ -42,18 +42,31 @@ public class Movimentacao {
     @JoinColumn(name = "configuracao_ativo_id") // Nome da coluna na tabela Movimentacao
     private ConfiguracaoAtivo configuracaoAtivo;  // Relacionamento com ConfiguracaoAtivo
 
+    private BigDecimal valorAplicado;
+
     private BigDecimal valor;
 
     private LocalDate data;
+
+    private LocalDate dataAplicacao;
+
+    private LocalDate dataVencimento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movimentacao_origem_id") // Nome da coluna no banco de dados
+    private Movimentacao movimentacaoOrigem;
+
 
     @Enumerated(EnumType.STRING)
     private TipoMovimentacao tipoMovimentacao; // Relacionamento com TipoMovimentacao (já configurado corretamente)
 
 
     public Movimentacao(MovimentacaoInput input, ConfiguracaoAtivo configuracaoAtivo) {
+        this.valorAplicado = input.valorAplicado();
         this.configuracaoAtivo = configuracaoAtivo;
         this.valor = input.valor();
         this.tipoMovimentacao = input.tipoMovimentacao();
+        this.data = input.data();
     }
 }
 

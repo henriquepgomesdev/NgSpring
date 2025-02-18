@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfiguracaoAtivoInput, ConfiguracaoAtivoService } from '../configuracao-ativo/configuracao-ativo.service';
+import { CalculadoraService } from './calculadora.service';
 
 interface selic {
   nome: string;
@@ -12,7 +15,11 @@ interface selic {
   templateUrl: './calculadora.component.html',
   styleUrls: ['./calculadora.component.scss'],
 })
-export class CalculadoraComponent {
+export class CalculadoraComponent implements OnInit {
+
+  configuracoesAtivo: ConfiguracaoAtivoInput[] = [];
+
+  calculadoraForm: FormGroup;
   cdi: number = 0; // CDI anual (%)
   selic: number = 0; // SELIC anual (%)
   rentabilidadeCDI: number = 0; // SELIC anual (%)
@@ -21,16 +28,27 @@ export class CalculadoraComponent {
 
   valorFinal: number = 0;
 
-  calcularRentabilidade(): void {
-     const cdiDiario = this.cdi / 100 / 252;
+  ngOnInit() {
 
-     const ajusteSelic = this.selic / 100 / 252;
+  }
 
-      // Rentabilidade aplicada sobre o CDI diário
-      this.rentabilidadeDiaria = this.valorInvestido * (cdiDiario * (this.rentabilidadeCDI / 100) + ajusteSelic * 0.1);
+  constructor(private fb: FormBuilder, private configuracaoAtivoService: ConfiguracaoAtivoService, private calculadoraService: CalculadoraService) {
+    this.calculadoraForm = this.fb.group({
+      data: ['', Validators.required]
+    });
+  }
 
-      this.valorFinal = this.rentabilidadeDiaria + this.valorInvestido;
-
+  onPesquisar() {
+    const calculadoraInput = this.calculadoraForm.value;
+    this.calculadoraService.getAll(calculadoraInput).subscribe(
+      response => {
+        console.log('Usuário registrado com sucesso!', response);
+        this.valorFinal = response;
+      },
+      error => {
+        console.error('Erro ao registrar usuário', error);
+      }
+    );
   }
 
 }

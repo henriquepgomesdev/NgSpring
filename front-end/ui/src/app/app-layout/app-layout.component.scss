@@ -52,3 +52,18 @@ mat-sidenav-content {
   border-bottom: 1px solid #ddd;
 }
 
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.mat-sidenav-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding-bottom: 32px; /* Adiciona espaço no final */
+}
