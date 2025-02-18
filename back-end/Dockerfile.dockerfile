@@ -1,23 +1,17 @@
-# Use uma imagem do OpenJDK
-FROM openjdk:17-jdk-alpine
+# Usando a imagem base do Maven
+FROM maven:3.6.3-jdk-11 AS build
 
-# Instale o Maven
-RUN apk update && apk add maven
+# Defina o diretório de trabalho para a pasta onde está o pom.xml
+WORKDIR /app/back-end
 
-# Defina o diretório de trabalho
-WORKDIR /app
+# Copie os arquivos da pasta back-end para o diretório de trabalho na imagem
+COPY back-end/ /app/back-end
 
-# Copie todos os arquivos do projeto (inclusive pom.xml)
-COPY . .
-
-# Liste os arquivos no diretório para verificar a presença do pom.xml
-RUN ls -la /app
-
-# Instale as dependências do projeto (executando mvn clean install)
+# Execute o Maven clean install no diretório onde está o pom.xml
 RUN mvn clean install
 
-# Exponha a porta em que o app vai rodar
+# Exponha a porta que o app vai rodar, se necessário
 EXPOSE 8080
 
-# Comando para rodar o projeto (ajuste conforme necessário)
-CMD ["java", "-jar", "target/your-app-name.jar"]
+# Comando para rodar o aplicativo
+CMD ["java", "-jar", "target/seu-arquivo.jar"]
