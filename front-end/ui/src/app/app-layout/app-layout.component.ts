@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app-layout.component.scss']
 })
 export class AppLayoutComponent implements OnInit {
-  currentPageTitle: string = '';
+  currentPageTitle: string = 'Yasmin eu te amo <3';
 
   constructor(private router: Router) {}
 
