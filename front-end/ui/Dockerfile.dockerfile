@@ -13,8 +13,8 @@ RUN npm install
 # Copia o código fonte para dentro do container
 COPY . .
 
-# Gera os arquivos de produção do Angular
-RUN ng build --prod
+# Gera os arquivos de produção do Angular (sem --prod)
+RUN ng build
 
 # Etapa 2: Servir os arquivos com o Nginx
 FROM nginx:alpine
