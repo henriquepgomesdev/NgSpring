@@ -7,8 +7,9 @@ WORKDIR /app
 # Copia o package.json e o package-lock.json
 COPY package*.json ./
 
-# Instala as dependências do Angular
+# Instala as dependências do Angular e a Angular CLI
 RUN npm install
+RUN npm install -g @angular/cli
 
 # Copia o código fonte para dentro do container
 COPY . .
@@ -23,7 +24,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copia os arquivos gerados para a pasta do Nginx
-COPY --from=build /app/dist/seu-projeto-angular /usr/share/nginx/html
+COPY --from=build /app/dist/ui /usr/share/nginx/html
 
 # Expondo a porta 80
 EXPOSE 80
