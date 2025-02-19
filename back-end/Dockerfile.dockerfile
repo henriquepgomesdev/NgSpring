@@ -14,7 +14,7 @@ RUN mvn clean install
 FROM tomcat:9.0
 
 # Copiar o arquivo .war para a pasta webapps do Tomcat
-COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT1.war /usr/local/tomcat/webapps/
 
 # Expõe a porta do Tomcat
 EXPOSE 8080
