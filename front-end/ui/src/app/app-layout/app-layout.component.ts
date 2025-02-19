@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app-layout.component.scss']
 })
 export class AppLayoutComponent implements OnInit {
-  currentPageTitle: string = 'Yasmin eu te amo <3';
+  currentPageTitle: string = 'Seja bem vindo!';
 
   constructor(private router: Router) {}
 
@@ -25,21 +25,21 @@ export class AppLayoutComponent implements OnInit {
     const route = this.router.url;
     console.log(route);
     this.currentPageTitle = 'Yasmin eu te amo <3';
-//     if (route.includes('/configuracao-ativo')) {
-//       this.currentPageTitle = 'Configuração ativo';
-//     } else if (route.includes('/dashboard')) {
-//       this.currentPageTitle = 'Dashboard';
-//     } else if (route.includes('/selic')) {
-//       this.currentPageTitle = 'Selic';
-//     } else if (route.includes('/cdi')) {
-//       this.currentPageTitle = 'CDI';
-//     }  else if (route.includes('/calculadora')) {
-//       this.currentPageTitle = 'Calculadora';
-//     } else if (route.includes('/movimentacao')) {
-//       this.currentPageTitle = 'Movimentacao';
-//     }  else if (route.includes('/saldo-ativo')) {
-//       this.currentPageTitle = 'Saldo por ativo';
-//     }
+    if (route.includes('/configuracao-ativo')) {
+      this.currentPageTitle = 'Configuração ativo';
+    } else if (route.includes('/dashboard')) {
+      this.currentPageTitle = 'Dashboard';
+    } else if (route.includes('/selic')) {
+      this.currentPageTitle = 'Selic';
+    } else if (route.includes('/cdi')) {
+      this.currentPageTitle = 'CDI';
+    }  else if (route.includes('/calculadora')) {
+      this.currentPageTitle = 'Calculadora';
+    } else if (route.includes('/movimentacao')) {
+      this.currentPageTitle = 'Movimentacao';
+    }  else if (route.includes('/saldo-ativo')) {
+      this.currentPageTitle = 'Saldo por ativo';
+    }
     // Adicione mais condições conforme necessário para outras páginas
   }
 }
