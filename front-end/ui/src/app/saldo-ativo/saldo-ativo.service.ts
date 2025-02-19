@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 export interface SaldoAtivoOutput {
@@ -16,7 +17,7 @@ export interface SaldoAtivoOutput {
   providedIn: 'root'
 })
 export class SaldoAtivoService {
-  private apiUrl = 'http://localhost:8090/saldo-ativo';
+  private apiUrl = `${environment.apiUrl}/saldo-ativo`;
 
   constructor(private http: HttpClient) { }
 

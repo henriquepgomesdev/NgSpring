@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface ConfiguracaoAtivoInput {
   id: number;
@@ -14,7 +15,7 @@ export interface ConfiguracaoAtivoInput {
   providedIn: 'root'
 })
 export class ConfiguracaoAtivoService {
-  private apiUrl = 'http://localhost:8090/configuracao-ativo';
+  private apiUrl = `${environment.apiUrl}/configuracao-ativo`;
 
   constructor(private http: HttpClient) { }
 

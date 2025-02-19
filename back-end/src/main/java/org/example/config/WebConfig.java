@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // Permite todas as rotas
-                .allowedOrigins("http://localhost:4200")  // Permite o frontend rodando em localhost:4200
+                .allowedOrigins("https://ngspring-2.onrender.com")  // Permite o frontend rodando em localhost:4200
                 .allowedMethods("GET", "POST", "PUT", "DELETE")  // Métodos permitidos
                 .allowedHeaders("*");  // Permite todos os cabeçalhos
     }

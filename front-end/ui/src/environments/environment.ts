@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8090' // Substitua pelo endereço da sua API
+  apiUrl: 'https://ngspring-1.onrender.com/ngspring' // Substitua pelo endereço da sua API
 };

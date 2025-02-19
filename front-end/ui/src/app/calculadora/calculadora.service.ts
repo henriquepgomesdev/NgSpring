@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CalculadoraInput {
   data: Date;
@@ -12,7 +13,7 @@ export interface CalculadoraInput {
   providedIn: 'root'
 })
 export class CalculadoraService {
-  private apiUrl = 'http://localhost:8090/calculadora-rentabilidade';
+  private apiUrl = `${environment.apiUrl}/calculadora-rentabilidade`;
 
   constructor(private http: HttpClient) {}
 

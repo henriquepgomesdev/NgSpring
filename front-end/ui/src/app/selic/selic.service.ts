@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface SelicInput {
   data: Date;
@@ -11,7 +12,7 @@ export interface SelicInput {
   providedIn: 'root'
 })
 export class SelicService {
-  private apiUrl = 'http://localhost:8090/selic';
+  private apiUrl = `${environment.apiUrl}/selic`;
 
   constructor(private http: HttpClient) {}
 

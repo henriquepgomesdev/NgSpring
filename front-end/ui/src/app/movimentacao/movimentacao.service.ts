@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface MovimentacaoInput {
   data: Date;
@@ -19,7 +20,7 @@ export interface MovimentacaoOutput {
   providedIn: 'root'
 })
 export class MovimentacaoService {
-  private apiUrl = 'http://localhost:8090/movimentacao';
+  private apiUrl = `${environment.apiUrl}/movimentacao`;
 
   constructor(private http: HttpClient) { }
 

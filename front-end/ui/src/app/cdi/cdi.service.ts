@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CdiInput {
   data: Date;
@@ -11,7 +12,7 @@ export interface CdiInput {
   providedIn: 'root'
 })
 export class CdiService {
-  private apiUrl = 'http://localhost:8090/cdi';
+  private apiUrl = `${environment.apiUrl}/cdi`;
 
   constructor(private http: HttpClient) {}
 
