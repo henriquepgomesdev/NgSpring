@@ -17,7 +17,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copie o arquivo .jar gerado pela etapa anterior
-COPY --from=build /app/target/your-app-name.jar app.jar
+COPY --from=build /app/target/estudos-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponha a porta onde o app estará rodando
 EXPOSE 8090
