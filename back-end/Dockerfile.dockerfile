@@ -20,7 +20,7 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expõe a porta do Tomcat
-EXPOSE 8090
+EXPOSE 8080
 
 # O Tomcat vai iniciar automaticamente ao rodar o contêiner
 CMD ["catalina.sh", "run"]
