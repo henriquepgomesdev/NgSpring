@@ -17,7 +17,7 @@ FROM tomcat:9.0
 COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 # Expõe a porta do Tomcat
-EXPOSE 8090
+EXPOSE 8080
 
 # O Tomcat vai iniciar automaticamente ao rodar o contêiner
 CMD ["catalina.sh", "run"]
