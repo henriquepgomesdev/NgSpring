@@ -13,11 +13,14 @@ RUN mvn clean install
 # Usar a imagem oficial do Tomcat como base
 FROM tomcat:9.0
 
-# Copiar o arquivo .war para a pasta webapps do Tomcat
-COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+# Apagar qualquer configuração anterior de Tomcat (para limpar webapps)
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copiar o arquivo .war para a pasta webapps do Tomcat e renomeá-lo para ROOT.war
+COPY --from=build /app/back-end/target/estudos-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expõe a porta do Tomcat
-EXPOSE 8080
+EXPOSE 8090
 
 # O Tomcat vai iniciar automaticamente ao rodar o contêiner
 CMD ["catalina.sh", "run"]
