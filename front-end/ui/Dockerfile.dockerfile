@@ -1,29 +1,28 @@
 # Etapa 1: Construir o projeto Angular
 FROM node:18 AS build
 
-# Define o diretório de trabalho dentro do container
+# Define o diretÃ³rio de trabalho dentro do container
 WORKDIR /app
 
-# Copia o package.json e o package-lock.json
-COPY package*.json ./
+# Copia apenas os arquivos necessÃ¡rios para instalar dependÃªncias
+COPY package.json package-lock.json ./
 
-# Instala as dependências do Angular e a Angular CLI
-RUN npm install
-RUN npm install -g @angular/cli
+# Instala as dependÃªncias do projeto
+RUN npm install --legacy-peer-deps
 
-# Copia o código fonte para dentro do container
+# Copia o restante do cÃ³digo fonte
 COPY . .
 
-# Gera os arquivos de produção do Angular (sem --prod)
-RUN ng build
+# Gera os arquivos de produÃ§Ã£o do Angular
+RUN npm run build -- --configuration=production
 
 # Etapa 2: Servir os arquivos com o Nginx
 FROM nginx:alpine
 
-# Remove o conteúdo padrão do Nginx
+# Remove o conteÃºdo padrÃ£o do Nginx
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copia os arquivos gerados para a pasta do Nginx
+# Copia os arquivos gerados pelo Angular para a pasta do Nginx
 COPY --from=build /app/dist/ui /usr/share/nginx/html
 
 # Expondo a porta 80
