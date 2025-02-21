@@ -1,9 +1,9 @@
 package org.example.utils;
 
-import java.time.LocalDate;
 import java.time.DayOfWeek;
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 public class DiasUteisBrasil {
 

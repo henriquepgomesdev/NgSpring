@@ -1,7 +1,6 @@
 package org.example.movimentacao.service;
 
 
-import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
 import org.example.configuracaoativo.service.ConfiguracaoAtivoService;
 import org.example.movimentacao.domain.Movimentacao;
 import org.example.movimentacao.enums.TipoMovimentacao;
@@ -11,7 +10,6 @@ import org.example.movimentacao.repository.MovimentacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,7 +51,7 @@ public class MovimentacaoService {
         repository.save(movimentacao);
     }
 
-    public Movimentacao findById(Long id){
+    public Movimentacao findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Configuração não encontrada!"));
     }
 }

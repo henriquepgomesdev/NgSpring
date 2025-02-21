@@ -6,6 +6,7 @@ import org.example.movimentacao.model.SaldoAtivoOutput;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long> {
@@ -22,10 +23,11 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long
                     COALESCE(SUM(CASE WHEN m.tipoMovimentacao = 'RENDIMENTO' THEN m.valor ELSE 0 END), 0)
                     )
                 FROM movimentacao m
+                WHERE m.data <= :data
                 GROUP BY m.configuracaoAtivo.nome, m.configuracaoAtivo.id, m.movimentacaoOrigem.id
                 ORDER BY m.configuracaoAtivo.nome
             """)
-    List<SaldoAtivoOutput> calcularSaldoPorConfiguracaoAtivo();
+    List<SaldoAtivoOutput> calcularSaldoPorConfiguracaoAtivo(LocalDate data);
 
 
 }

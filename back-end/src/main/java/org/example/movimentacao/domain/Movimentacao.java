@@ -17,7 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
-import org.example.configuracaoativo.model.ConfiguracaoAtivoInput;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.MovimentacaoInput;
 

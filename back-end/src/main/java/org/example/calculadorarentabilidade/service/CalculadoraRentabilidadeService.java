@@ -7,7 +7,6 @@ import org.example.configuracaoativo.service.ConfiguracaoAtivoService;
 import org.example.movimentacao.domain.Movimentacao;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.SaldoAtivoOutput;
-import org.example.movimentacao.repository.MovimentacaoRepository;
 import org.example.movimentacao.service.MovimentacaoService;
 import org.example.saldoativo.service.SaldoAtivoService;
 import org.example.utils.DiasUteisBrasil;
@@ -17,10 +16,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import static org.example.utils.DiasUteisBrasil.contarDiasUteis;
 
 @Service
 public class CalculadoraRentabilidadeService {
@@ -36,7 +32,7 @@ public class CalculadoraRentabilidadeService {
 
 
     public void calculaValor(CalculadoraRentabilidadeInput calculadoraRentabilidadeInput) {
-        List<SaldoAtivoOutput> saldos = saldoAtivoService.calculaSaldo();
+        List<SaldoAtivoOutput> saldos = saldoAtivoService.calculaSaldo(calculadoraRentabilidadeInput.data());
 
         for (SaldoAtivoOutput saldo : saldos) {
             ConfiguracaoAtivo configuracaoAtivo = configuracaoAtivoService.findById(saldo.idAtivo());

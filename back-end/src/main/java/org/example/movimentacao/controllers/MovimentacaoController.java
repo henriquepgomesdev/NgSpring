@@ -1,7 +1,6 @@
 package org.example.movimentacao.controllers;
 
 import jakarta.validation.Valid;
-import org.example.movimentacao.domain.Movimentacao;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.MovimentacaoInput;
 import org.example.movimentacao.model.MovimentacaoOutput;

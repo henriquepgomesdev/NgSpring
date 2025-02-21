@@ -5,11 +5,7 @@ import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
 import org.example.configuracaoativo.mapper.ConfiguracaoAtivoMapper;
 import org.example.configuracaoativo.model.ConfiguracaoAtivoInput;
 import org.example.configuracaoativo.repository.ConfiguracaoAtivoRepository;
-import org.example.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +23,7 @@ public class ConfiguracaoAtivoService {
         repository.save(new ConfiguracaoAtivo(input));
     }
 
-    public ConfiguracaoAtivo findById(Long id){
+    public ConfiguracaoAtivo findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Configuração não encontrada!"));
     }
 

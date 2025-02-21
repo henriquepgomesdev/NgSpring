@@ -4,18 +4,13 @@ import jakarta.validation.Valid;
 import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
 import org.example.configuracaoativo.model.ConfiguracaoAtivoInput;
 import org.example.configuracaoativo.service.ConfiguracaoAtivoService;
-import org.example.domain.User;
-import org.example.dto.AutheticationDTO;
-import org.example.dto.LoginResponseDTO;
-import org.example.dto.RegisterDTO;
-import org.example.infra.security.TokenService;
-import org.example.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

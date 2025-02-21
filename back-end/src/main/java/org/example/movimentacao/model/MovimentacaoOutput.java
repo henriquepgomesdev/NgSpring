@@ -1,7 +1,5 @@
 package org.example.movimentacao.model;
 
-import org.example.movimentacao.enums.TipoMovimentacao;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

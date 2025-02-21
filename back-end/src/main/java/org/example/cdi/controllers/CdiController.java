@@ -2,13 +2,8 @@ package org.example.cdi.controllers;
 
 import jakarta.validation.Valid;
 import org.example.cdi.domain.Cdi;
-import org.example.cdi.domain.Selic;
 import org.example.cdi.model.CdiInput;
-import org.example.cdi.model.SelicInput;
 import org.example.cdi.service.CdiService;
-import org.example.movimentacao.domain.Movimentacao;
-import org.example.movimentacao.model.MovimentacaoInput;
-import org.example.movimentacao.service.MovimentacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

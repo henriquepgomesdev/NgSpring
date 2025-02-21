@@ -1,11 +1,9 @@
 package org.example.movimentacao.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.stream.Stream;
 
@@ -14,8 +12,8 @@ import java.util.stream.Stream;
 public enum TipoMovimentacao {
 
     APORTE(1, "Aporte", TipoMovimentacaoFinanceiro.ENTRADA),
-    RENDIMENTO(2, "Rendimento",  TipoMovimentacaoFinanceiro.ENTRADA),
-    RESGATE(3, "Resgate",  TipoMovimentacaoFinanceiro.SAIDA);
+    RENDIMENTO(2, "Rendimento", TipoMovimentacaoFinanceiro.ENTRADA),
+    RESGATE(3, "Resgate", TipoMovimentacaoFinanceiro.SAIDA);
 
     private final int id;
     private final String description;
