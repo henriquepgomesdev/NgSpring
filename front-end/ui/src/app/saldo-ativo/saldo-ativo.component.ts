@@ -17,9 +17,11 @@ interface cdi {
 })
 export class SaldoAtivoComponent implements OnInit {
 
+  dataInicial: string = '';
+  dataFinal: string = '';
   saldos: SaldoAtivoOutput[] = [];
 
-  displayedColumns: string[] = ['data', 'ativo', 'valor', 'rendimento', 'percentualRendimento', 'rendimentoTotal', 'percentualRendimentoTotal'];
+  displayedColumns: string[] = ['data', 'ativo', 'valorBruto', 'rendimentoBruto', 'percentualRendimentoBruto', 'valorLiquido', 'rendimentoLiquido', 'percentualRendimentoLiquido'];
 
   ngOnInit() {
 
@@ -31,16 +33,16 @@ export class SaldoAtivoComponent implements OnInit {
 
   onPesquisar() {
 
-    this.saldoAtivoService.getAll().subscribe(
+    this.saldoAtivoService.getAll(this.dataInicial, this.dataFinal).subscribe(
       response => {
         console.log('Usuário registrado com sucesso!', response);
         this.saldos = response.map(saldo => ({
           ...saldo,
-          percentualRendimento: saldo.valor ? (saldo.rendimento / saldo.valor) * 100 : 0
+          percentualRendimento: saldo.valorBruto ? (saldo.rendimentoBruto / saldo.valorBruto) * 100 : 0
         }));
         this.saldos = response.map(saldo => ({
           ...saldo,
-          percentualRendimentoTotal: saldo.valor ? (saldo.rendimentoTotal / saldo.valor) * 100 : 0
+          percentualRendimentoTotal: saldo.valorBruto ? (saldo.rendimentoTotal / saldo.valorBruto) * 100 : 0
         }));
       },
       error => {
@@ -51,7 +53,11 @@ export class SaldoAtivoComponent implements OnInit {
   }
 
   getTotalSaldo(): number {
-    return this.saldos?.reduce((total, item) => total + (item.valor || 0), 0) || 0;
+    return this.saldos?.reduce((total, item) => total + (item.valorBruto || 0), 0) || 0;
+  } 
+  
+  getTotalRendimentoSaldo(): number {
+    return this.saldos?.reduce((total, item) => total + (item.rendimentoLiquido || 0), 0) || 0;
   }  
 
 }

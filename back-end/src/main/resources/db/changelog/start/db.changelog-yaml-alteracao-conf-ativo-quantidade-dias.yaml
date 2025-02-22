@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-quantidade-dias
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            columnExists:
+              tableName: configuracao_ativo
+              columnName: quantidade_dias
+      changes:
+        - addColumn:
+            tableName: configuracao_ativo
+            columns:
+              - column:
+                  name: quantidade_dias
+                  type: INTEGER

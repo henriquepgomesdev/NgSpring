@@ -6,9 +6,12 @@ import { environment } from '../../environments/environment';
 
 export interface SaldoAtivoOutput {
   ativo: string;
-  valor: number;
-  rendimento: number;
-  percentualRendimento?: number;
+  valorBruto: number;
+  rendimentoBruto: number;
+  percentualRendimentoBruto?: number;
+  valorLiquido: number;
+  rendimentoLiquido: number;
+  percentualRendimentoLiquido?: number;
   rendimentoTotal: number;
   percentualRendimentoTotal?: number;
 }
@@ -21,8 +24,7 @@ export class SaldoAtivoService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<SaldoAtivoOutput[]> {
-    return this.http.get<SaldoAtivoOutput[]>(`${this.apiUrl}`);
+  getAll(dataInicial: string, dataFinal: string): Observable<SaldoAtivoOutput[]> {
+    return this.http.get<SaldoAtivoOutput[]>(`${this.apiUrl}?dataInicial=${dataInicial}&dataFinal=${dataFinal}`);
   }
-
 }

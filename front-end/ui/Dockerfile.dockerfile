@@ -15,7 +15,7 @@ COPY . .
 
 # Gera os arquivos de produção do Angular
 RUN npm run build -- --configuration=production
-
+    
 # Etapa 2: Servir os arquivos com o Nginx
 FROM nginx:alpine
 

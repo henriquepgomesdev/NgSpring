@@ -35,6 +35,8 @@ public class ConfiguracaoAtivo {
 
     private BigDecimal rendimentoMes;
 
+    private Integer quantidadeDias;
+
     private boolean somenteDiasUteis;
 
     public ConfiguracaoAtivo(ConfiguracaoAtivoInput input) {

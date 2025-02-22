@@ -32,18 +32,18 @@ public class CalculadoraRentabilidadeService {
 
 
     public void calculaValor(CalculadoraRentabilidadeInput calculadoraRentabilidadeInput) {
-        List<SaldoAtivoOutput> saldos = saldoAtivoService.calculaSaldo(calculadoraRentabilidadeInput.data());
+        List<SaldoAtivoOutput> saldos = saldoAtivoService.calculaSaldo(null, calculadoraRentabilidadeInput.data());
 
         for (SaldoAtivoOutput saldo : saldos) {
-            ConfiguracaoAtivo configuracaoAtivo = configuracaoAtivoService.findById(saldo.idAtivo());
+            ConfiguracaoAtivo configuracaoAtivo = configuracaoAtivoService.findById(saldo.getIdAtivo());
 
-            LocalDate dataInicial = saldo.data();
+            LocalDate dataInicial = saldo.getData();
             LocalDate dataFinal = calculadoraRentabilidadeInput.data();
             boolean contarDiasUteis = configuracaoAtivo.isSomenteDiasUteis();
-            BigDecimal valorAtual = saldo.valor();
+            BigDecimal valorAtual = saldo.getValorBruto();
             BigDecimal rentabilidadeDiaria = configuracaoAtivo.getRendimentoDia(); // Rentabilidade diária %
 
-            Movimentacao movimentacaoOrigem = movimentacaoService.findById(saldo.idMovimentacao());
+            Movimentacao movimentacaoOrigem = movimentacaoService.findById(saldo.getIdMovimentacao());
 
             // Iterar sobre cada dia e criar uma movimentação
             LocalDate dataAtual = dataInicial.plusDays(1); // Começa no dia seguinte ao saldo original

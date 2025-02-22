@@ -2,6 +2,16 @@
   <!-- Aba de Pesquisa -->
   <mat-tab label="Pesquisa">
     <div class="pesquisa">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Data inicial</mat-label>
+        <input matInput id="dataCDI" type="date" [(ngModel)]="dataInicial" name="data" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Data final</mat-label>
+        <input matInput id="dataCDIs" type="date" [(ngModel)]="dataFinal" name="data" />
+      </mat-form-field>
+      
       <button mat-raised-button color="primary" (click)="onPesquisar()">Pesquisar</button>
 
       <table mat-table [dataSource]="saldos" class="mat-elevation-z8 table">
@@ -10,36 +20,37 @@
           <td mat-cell *matCellDef="let cdi"> {{ cdi.data | date: 'dd/MM/yyyy' }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="valor">
-          <th mat-header-cell *matHeaderCellDef> Valor </th>
-          <td mat-cell *matCellDef="let cdi"> {{ cdi.valor | currency:'BRL':'symbol':'1.2-2' }} </td>
+        <ng-container matColumnDef="valorBruto">
+          <th mat-header-cell *matHeaderCellDef> Valor bruto</th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.valorBruto | currency:'BRL':'symbol':'1.2-2' }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="rendimento">
-          <th mat-header-cell *matHeaderCellDef> Rendimento ($) </th>
-          <td mat-cell *matCellDef="let cdi"> {{ cdi.rendimento | currency:'BRL':'symbol':'1.2-2' }} </td>
+        <ng-container matColumnDef="rendimentoBruto">
+          <th mat-header-cell *matHeaderCellDef> Rendimento bruto ($) </th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.rendimentoBruto | currency:'BRL':'symbol':'1.2-2' }} </td>
         </ng-container>
-        <ng-container matColumnDef="percentualRendimento">
-          <th mat-header-cell *matHeaderCellDef> Rendimento (%) </th>
+        <ng-container matColumnDef="percentualRendimentoBruto">
+          <th mat-header-cell *matHeaderCellDef> Rendimento bruto (%) </th>
           <td mat-cell *matCellDef="let cdi"> 
-            {{ (cdi.rendimento / cdi.valor) * 100 | number:'1.2-2' }}%
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="rendimentoTotal">
-          <th mat-header-cell *matHeaderCellDef> Rendimento total ($) </th>
-          <td mat-cell *matCellDef="let cdi"> 
-            {{ cdi.rendimentoTotal | currency:'BRL':'symbol':'1.2-2' }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="percentualRendimentoTotal">
-          <th mat-header-cell *matHeaderCellDef> Rendimento total (%) </th>
-          <td mat-cell *matCellDef="let cdi"> 
-            {{ (cdi.rendimentoTotal / cdi.valor) * 100 | number:'1.2-2' }}%
+            {{ (cdi.rendimentoBruto / cdi.valorBruto) * 100 | number:'1.2-2' }}%
           </td>
         </ng-container>
         
+        <ng-container matColumnDef="valorLiquido">
+          <th mat-header-cell *matHeaderCellDef> Valor liquido</th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.valorLiquido | currency:'BRL':'symbol':'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rendimentoLiquido">
+          <th mat-header-cell *matHeaderCellDef> Rendimento liquido ($) </th>
+          <td mat-cell *matCellDef="let cdi"> {{ cdi.rendimentoLiquido | currency:'BRL':'symbol':'1.2-2' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="percentualRendimentoLiquido">
+          <th mat-header-cell *matHeaderCellDef> Rendimento liquido (%) </th>
+          <td mat-cell *matCellDef="let cdi"> 
+            {{ (cdi.rendimentoLiquido / cdi.valorLiquido) * 100 | number:'1.2-2' }}%
+          </td>
+        </ng-container>
 
         <ng-container matColumnDef="ativo">
           <th mat-header-cell *matHeaderCellDef> Ativo </th>
@@ -55,4 +66,7 @@
 
 <div class="total-container">
   <strong>Total: {{ getTotalSaldo() | currency:'BRL' }}</strong>
+</div>
+<div class="total-container">
+  <strong>Total: {{ getTotalRendimentoSaldo() | currency:'BRL' }}</strong>
 </div>
