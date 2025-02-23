@@ -19,3 +19,5 @@ databaseChangeLog:
       file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-data-vencimento.yaml
   - include:
       file: db/changelog/start/db.changelog-yaml-alteracao-conf-ativo-quantidade-dias.yaml
+  - include:
+      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-user.yaml

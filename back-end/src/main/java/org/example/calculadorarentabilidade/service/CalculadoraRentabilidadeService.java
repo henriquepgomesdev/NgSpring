@@ -4,10 +4,12 @@ package org.example.calculadorarentabilidade.service;
 import org.example.calculadorarentabilidade.model.CalculadoraRentabilidadeInput;
 import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
 import org.example.configuracaoativo.service.ConfiguracaoAtivoService;
+import org.example.infra.security.UsersAutenticatedUtils;
 import org.example.movimentacao.domain.Movimentacao;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.SaldoAtivoOutput;
 import org.example.movimentacao.service.MovimentacaoService;
+import org.example.repositories.UserRepository;
 import org.example.saldoativo.service.SaldoAtivoService;
 import org.example.utils.DiasUteisBrasil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,12 @@ public class CalculadoraRentabilidadeService {
 
     @Autowired
     private ConfiguracaoAtivoService configuracaoAtivoService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UsersAutenticatedUtils usersAutenticatedUtils;
 
 
     public void calculaValor(CalculadoraRentabilidadeInput calculadoraRentabilidadeInput) {
@@ -67,6 +75,7 @@ public class CalculadoraRentabilidadeService {
                 novaMovimentacao.setData(dataAtual);
                 novaMovimentacao.setValor(rendimento);
                 novaMovimentacao.setMovimentacaoOrigem(movimentacaoOrigem);
+                novaMovimentacao.setUser(userRepository.getReferenceById(usersAutenticatedUtils.getAuthenticatedUserId()));
 
                 movimentacaoService.salvarMovimentacao(novaMovimentacao);
 

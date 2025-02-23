@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.configuracaoativo.domain.ConfiguracaoAtivo;
+import org.example.domain.User;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.MovimentacaoInput;
 
@@ -41,6 +42,10 @@ public class Movimentacao {
     @JoinColumn(name = "configuracao_ativo_id") // Nome da coluna na tabela Movimentacao
     private ConfiguracaoAtivo configuracaoAtivo;  // Relacionamento com ConfiguracaoAtivo
 
+    @ManyToOne(fetch = FetchType.LAZY) // Define o relacionamento ManyToOne
+    @JoinColumn(name = "user_id") // Nome da coluna na tabela Movimentacao
+    private User user;  // Relacionamento com ConfiguracaoAtivo
+
     private BigDecimal valorAplicado;
 
     private BigDecimal valor;
@@ -60,12 +65,20 @@ public class Movimentacao {
     private TipoMovimentacao tipoMovimentacao; // Relacionamento com TipoMovimentacao (já configurado corretamente)
 
 
-    public Movimentacao(MovimentacaoInput input, ConfiguracaoAtivo configuracaoAtivo) {
+    public Movimentacao(MovimentacaoInput input, ConfiguracaoAtivo configuracaoAtivo, User user) {
         this.valorAplicado = input.valorAplicado();
         this.configuracaoAtivo = configuracaoAtivo;
         this.valor = input.valor();
         this.tipoMovimentacao = input.tipoMovimentacao();
         this.data = input.data();
+        this.dataAplicacao = input.dataAplicacao();
+        this.dataVencimento = input.dataVencimento();
+        this.valorAplicado = input.valorAplicado();
+        this.user = user;
+    }
+
+    public void setarMovimentacaoOrigem() {
+        this.movimentacaoOrigem = this;
     }
 }
 

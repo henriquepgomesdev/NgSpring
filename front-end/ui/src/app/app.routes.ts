@@ -13,28 +13,28 @@ import { SelicComponent } from './selic/selic.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
 import { SaldoAtivoComponent } from './saldo-ativo/saldo-ativo.component';
+import { AppComponent } from './app.component';
+import { IndexComponent } from './index/index.component';
 
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }, // Rota do login
   { path: 'register', component: RegisterComponent },
   {
-    path: '', // Aqui é onde o layout protegido será exibido
+    path: '',
+    canActivate: [AuthGuard], // Protege as rotas abaixo
     component: AppLayoutComponent,
-    canActivate: [AuthGuard], // Aplica o AuthGuard na rota
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'settings', component: SettingsComponent },
+      { path: '', component: IndexComponent },  // Rota principal
       { path: 'configuracao-ativo', component: ConfiguracaoAtivoComponent },
-      { path: 'cdi', component: CdiComponent },
-      { path: 'selic', component: SelicComponent },
+      //{ path: 'cdi', component: CdiComponent },
+      //{ path: 'selic', component: SelicComponent },
       { path: 'movimentacao', component: MovimentacaoComponent },
       { path: 'calculadora', component: CalculadoraComponent },
       { path: 'saldo-ativo', component: SaldoAtivoComponent },
+      { path: '**', redirectTo: '' } // Redireciona para a rota principal se não encontrar
     ]
-  },
-  { path: '**', redirectTo: '/login' } // Redireciona para login para rotas não encontradas
+  }
 ];
 
 @NgModule({

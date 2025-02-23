@@ -1,28 +1,27 @@
-// auth.guard.ts
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  constructor(private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const token = localStorage.getItem('token');
 
-  canActivate(): Observable<boolean> {
-    return this.authService.isLoggedIn().pipe(
-      take(1),
-      map(isLoggedIn => {
-        if (isLoggedIn) {
-          return true; // Permite a navegação
-        } else {
-          this.router.navigate(['/login']); // Redireciona para a página de login
-          return false;
-        }
-      })
-    );
+    debugger;
+
+    // Permite acesso à página de cadastro sem autenticação
+    if (state.url === '/register') {
+      return true;
+    }
+
+    if (token) {
+      return true; // Usuário autenticado pode acessar outras rotas
+    } else {
+      this.router.navigate(['/login']); // Redireciona para login se não estiver autenticado
+      return false;
+    }
   }
 }

@@ -33,7 +33,10 @@ export class MovimentacaoComponent implements OnInit {
   constructor(private fb: FormBuilder, private movimentacaoService: MovimentacaoService, private configuracaoAtivoService: ConfiguracaoAtivoService) {
     this.movimentacaoForm = this.fb.group({
       data: ['', Validators.required],
+      dataAplicacao: ['', Validators.required],
+      dataVencimento: [''],
       valor: [0, [Validators.required, Validators.min(0)]],
+      valorAplicado: [0, [Validators.required, Validators.min(0)]],
       idAtivo: ['', Validators.required],
       tipoMovimentacao: ['', Validators.required]
     });

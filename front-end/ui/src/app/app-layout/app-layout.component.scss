@@ -67,3 +67,34 @@ mat-sidenav-content {
   flex: 1;
   padding-bottom: 32px; /* Adiciona espaço no final */
 }
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  font-size: 14px;
+  color: #555;
+  margin-left: 10px;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info button {
+  margin-left: 10px;
+}

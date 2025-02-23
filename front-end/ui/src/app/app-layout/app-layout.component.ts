@@ -10,6 +10,8 @@ import { filter } from 'rxjs/operators';
 export class AppLayoutComponent implements OnInit {
   currentPageTitle: string = 'Seja bem vindo!';
 
+  username: string = ''
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -19,12 +21,20 @@ export class AppLayoutComponent implements OnInit {
     ).subscribe(() => {
       this.updatePageTitle();
     });
+
+    // Recuperar o nome do usuário do localStorage (ou de outro lugar)
+    const user = localStorage.getItem('user'); // Exemplo de como você pode pegar o nome do usuário
+    debugger;
+    if (user) {
+      this.username = user; // Adaptar conforme o seu formato de armazenamento
+    }
   }
 
   private updatePageTitle(): void {
     const route = this.router.url;
     console.log(route);
-    this.currentPageTitle = 'Yasmin eu te amo <3';
+    
+    // Atualize para incluir a rota "/index"
     if (route.includes('/configuracao-ativo')) {
       this.currentPageTitle = 'Configuração ativo';
     } else if (route.includes('/dashboard')) {
@@ -36,10 +46,20 @@ export class AppLayoutComponent implements OnInit {
     }  else if (route.includes('/calculadora')) {
       this.currentPageTitle = 'Calculadora';
     } else if (route.includes('/movimentacao')) {
-      this.currentPageTitle = 'Movimentacao';
+      this.currentPageTitle = 'Movimentação';
     }  else if (route.includes('/saldo-ativo')) {
       this.currentPageTitle = 'Saldo por ativo';
+    } else if (route.includes('/index')) {  // Adicionado para a rota '/index'
+      this.currentPageTitle = 'Página Inicial';  // Você pode customizar o título conforme preferir
+    } else {
+      this.currentPageTitle = 'Seja bem vindo!';  // Título padrão caso não corresponda a nenhuma rota específica
     }
-    // Adicione mais condições conforme necessário para outras páginas
+  }
+
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 }

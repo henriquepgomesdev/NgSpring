@@ -2,11 +2,14 @@ package org.example.movimentacao.service;
 
 
 import org.example.configuracaoativo.service.ConfiguracaoAtivoService;
+import org.example.domain.User;
+import org.example.infra.security.UsersAutenticatedUtils;
 import org.example.movimentacao.domain.Movimentacao;
 import org.example.movimentacao.enums.TipoMovimentacao;
 import org.example.movimentacao.model.MovimentacaoInput;
 import org.example.movimentacao.model.MovimentacaoOutput;
 import org.example.movimentacao.repository.MovimentacaoRepository;
+import org.example.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +23,18 @@ public class MovimentacaoService {
     private MovimentacaoRepository repository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ConfiguracaoAtivoService configuracaoAtivoService;
 
+    @Autowired
+    private UsersAutenticatedUtils usersAutenticatedUtils;
+
     public void create(MovimentacaoInput input) {
-        repository.save(new Movimentacao(input, configuracaoAtivoService.findById(input.idAtivo())));
+        Movimentacao movimentacao = new Movimentacao(input, configuracaoAtivoService.findById(input.idAtivo()), userRepository.getReferenceById(usersAutenticatedUtils.getAuthenticatedUserId()));
+        movimentacao.setarMovimentacaoOrigem();
+        repository.save(movimentacao);
     }
 
     public List<Movimentacao> getAll() {
@@ -31,7 +42,7 @@ public class MovimentacaoService {
     }
 
     public List<MovimentacaoOutput> getAllMovimentacoes() {
-        List<Movimentacao> movimentacoes = repository.findAll();  // ou sua lógica para buscar as movimentações
+        List<Movimentacao> movimentacoes = repository.findAllByUserId(usersAutenticatedUtils.getAuthenticatedUserId());  // ou sua lógica para buscar as movimentações
 
         return movimentacoes.stream()
                 .map(movimentacao -> new MovimentacaoOutput(

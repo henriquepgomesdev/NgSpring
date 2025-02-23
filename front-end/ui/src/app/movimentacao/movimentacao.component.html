@@ -58,11 +58,30 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Data aplicação</mat-label>
+          <input matInput id="dataAplicacao" type="date" formControlName="dataAplicacao" />
+          <mat-error *ngIf="movimentacaoForm.get('dataAplicacao')?.invalid && movimentacaoForm.get('dataAplicacao')?.touched">
+            Data aplicação é obrigatória.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Data vencimento</mat-label>
+          <input matInput id="dataVencimento" type="date" formControlName="dataVencimento" />
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="input-field">
           <mat-label>Valor</mat-label>
           <input matInput id="valorCDI" type="number" formControlName="valor" />
           <mat-error *ngIf="movimentacaoForm.get('valor')?.invalid && movimentacaoForm.get('valor')?.touched">
             Valor é obrigatório e deve ser ≥ 0.
           </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Valor aplicado</mat-label>
+          <input matInput id="valorAplicado" type="number" formControlName="valorAplicado" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="input-field">

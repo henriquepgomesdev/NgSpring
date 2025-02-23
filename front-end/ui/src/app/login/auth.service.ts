@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment'; // Caminho correto
 
 interface LoginResponse {
   token: string;
+  user: string;
 }
 
 @Injectable({

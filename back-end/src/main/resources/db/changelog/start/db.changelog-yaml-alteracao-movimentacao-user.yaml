@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-column-user
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            columnExists:
+              tableName: movimentacao
+              columnName: user_id
+      changes:
+        - addColumn:
+            tableName: movimentacao
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: movimentacao
+            baseColumnNames: user_id
+            constraintName: fk_movimentacao_user
+            referencedTableName: users
+            referencedColumnNames: id

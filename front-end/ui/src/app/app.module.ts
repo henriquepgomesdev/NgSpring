@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './login/register/register.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
@@ -26,6 +26,8 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
 import { MatSelectModule } from '@angular/material/select';
 import { SaldoAtivoComponent } from './saldo-ativo/saldo-ativo.component';
+import { AuthInterceptor } from './login/auth-interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -59,11 +61,17 @@ import { SaldoAtivoComponent } from './saldo-ativo/saldo-ativo.component';
     MatCheckboxModule,
     MatButtonModule,
     MatCardModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class AppModule { }

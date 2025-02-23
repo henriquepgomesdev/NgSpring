@@ -2,17 +2,22 @@
   <mat-sidenav #sidenav mode="side" opened>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/configuracao-ativo']" routerLinkActive="active">Configuração ativo</a>
-      <a mat-list-item [routerLink]="['/cdi']" routerLinkActive="active">CDI</a>
-      <a mat-list-item [routerLink]="['/selic']" routerLinkActive="active">Selic</a>
+      <!-- <a mat-list-item [routerLink]="['/cdi']" routerLinkActive="active">CDI</a>
+     <a mat-list-item [routerLink]="['/selic']" routerLinkActive="active">Selic</a> -->
       <a mat-list-item [routerLink]="['/movimentacao']" routerLinkActive="active">Movimentação</a>
       <a mat-list-item [routerLink]="['/calculadora']" routerLinkActive="active">Calculadora</a>
       <a mat-list-item [routerLink]="['/saldo-ativo']" routerLinkActive="active">Saldo por ativo</a>
     </mat-nav-list>
   </mat-sidenav>
+  
 
   <mat-sidenav-content class="content">
     <div class="header">
       <h2>{{ currentPageTitle }}</h2>
+      <div class="user-info">
+        <span *ngIf="username">Bem-vindo, {{ username }}</span>
+        <button mat-button (click)="logout()">Logout</button>
+      </div>
     </div>
 
     <div class="page-content">

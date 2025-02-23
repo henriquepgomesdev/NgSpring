@@ -2,11 +2,6 @@
   <!-- Aba de Pesquisa -->
   <mat-tab label="Pesquisa">
     <div class="pesquisa">
-      <mat-form-field appearance="outline" class="input-field">
-        <mat-label>Buscar por nome</mat-label>
-        <input matInput [(ngModel)]="filtroNome" placeholder="Digite o nome do ativo..." />
-      </mat-form-field>
-
       <button mat-raised-button color="primary" (click)="onPesquisar()">Pesquisar</button>
 
       <table mat-table [dataSource]="ativos" class="mat-elevation-z8 table">
