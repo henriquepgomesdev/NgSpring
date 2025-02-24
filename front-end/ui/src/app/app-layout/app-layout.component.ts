@@ -10,6 +10,8 @@ import { filter } from 'rxjs/operators';
 export class AppLayoutComponent implements OnInit {
   currentPageTitle: string = 'Seja bem vindo!';
 
+  sistemaSelecionado: string = 'financeiro';
+
   username: string = ''
 
   constructor(private router: Router) {}

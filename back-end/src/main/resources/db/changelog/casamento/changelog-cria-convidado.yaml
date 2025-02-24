@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-convidado
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: convidado
+      changes:
+        - createTable:
+            tableName: convidado
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: convidado_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: nomeConvidado
+                  type: VARCHAR(255)
+              - column:
+                  name: noivo
+                  type: VARCHAR(255)
+              - column:
+                  name: parentesco
+                  type: VARCHAR(255)
+              - column:
+                  name: confirmaPresenca
+                  type: VARCHAR(255)
+              - column:
+                  name: user
+                  type: VARCHAR(255)
+        - createSequence:
+            sequenceName: seq_convidado
+            incrementBy: 1
+            startValue: 1

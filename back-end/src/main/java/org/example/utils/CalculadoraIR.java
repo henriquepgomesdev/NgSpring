@@ -1,6 +1,6 @@
 package org.example.utils;
 
-import org.example.movimentacao.model.SaldoAtivoOutput;
+import org.example.financeiro.movimentacao.model.SaldoAtivoOutput;
 
 import java.math.BigDecimal;
 

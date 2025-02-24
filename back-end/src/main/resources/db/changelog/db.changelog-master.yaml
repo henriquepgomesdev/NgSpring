@@ -1,23 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/start/db.changelog-yaml-user.yaml
+      file: db/changelog/financeiro/changelog-financeiro.yaml
   - include:
-      file: db/changelog/start/db.changelog-yaml-ativo.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-movimentacao.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-cdi.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-selic.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-2.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-data-aplicacao.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-data-vencimento.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-conf-ativo-quantidade-dias.yaml
-  - include:
-      file: db/changelog/start/db.changelog-yaml-alteracao-movimentacao-user.yaml
+      file: db/changelog/casamento/changelog-casamento.yaml

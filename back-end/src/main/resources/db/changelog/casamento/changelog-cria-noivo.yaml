@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-noivo
+      author: henrique
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: noivo
+      changes:
+        - createTable:
+            tableName: noivo
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: noivo_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: nomeNoivo
+                  type: VARCHAR(255)
+              - column:
+                  name: user
+                  type: VARCHAR(255)
+        - createSequence:
+            sequenceName: seq_noivo
+            incrementBy: 1
+            startValue: 1
+
