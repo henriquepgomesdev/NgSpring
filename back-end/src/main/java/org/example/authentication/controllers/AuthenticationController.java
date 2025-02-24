@@ -7,6 +7,7 @@ import org.example.user.dto.LoginResponseDTO;
 import org.example.user.dto.RegisterDTO;
 import org.example.authentication.TokenService;
 import org.example.user.repository.UserRepository;
+import org.example.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +27,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserRepository repository;
+    private UserService service;
 
     @Autowired
     private TokenService tokenService;
@@ -56,14 +57,14 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO registerDTO) {
         System.out.println("Requisição ok");
-        if (this.repository.findByLogin(registerDTO.login()) != null) {
+        if (this.service.loadUserByUsername(registerDTO.login()) != null) {
             return ResponseEntity.badRequest().build();
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(registerDTO.password());
         User user = new User(registerDTO.login(), encryptedPassword, registerDTO.role());
 
-        this.repository.save(user);
+        this.service.save(user);
         System.out.println("Sucesso");
         return ResponseEntity.ok().build();
     }
