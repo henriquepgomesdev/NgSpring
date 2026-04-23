@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 public enum Parentesco {
 
     PAI(3, "Pai"),
-    MÃE(4, "Mãe"),
-    IRMÃO(5, "Irmão(ã)"),
-    AVÔ(6, "Avô/Avó"),
+    MAE(4, "Mãe"),
+    IRMAO(5, "Irmão(ã)"),
+    AVO(6, "Avô/Avó"),
     TIO(7, "Tio(a)"),
     PRIMO(8, "Primo(a)"),
     AMIGO(9, "Amigo(a)"),
