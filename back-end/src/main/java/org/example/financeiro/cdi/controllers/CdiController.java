@@ -2,6 +2,7 @@ package org.example.financeiro.cdi.controllers;
 
 import jakarta.validation.Valid;
 import org.example.financeiro.cdi.domain.Cdi;
+import org.example.financeiro.cdi.model.CdiDto;
 import org.example.financeiro.cdi.model.CdiInput;
 import org.example.financeiro.cdi.service.CdiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,12 @@ public class CdiController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid CdiInput input) {
-        System.out.println(input);
         service.create(input);
-        System.out.println("Cadastro ok");
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Cdi>> list() {
+    public ResponseEntity<List<CdiDto>> list() {
         System.out.println("Requisicao ok");
         return ResponseEntity.ok(service.getAll());
     }

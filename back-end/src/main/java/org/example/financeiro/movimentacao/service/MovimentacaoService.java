@@ -5,7 +5,7 @@ import org.example.financeiro.configuracaoativo.service.ConfiguracaoAtivoService
 import org.example.financeiro.movimentacao.domain.Movimentacao;
 import org.example.financeiro.movimentacao.enums.TipoMovimentacao;
 import org.example.financeiro.movimentacao.model.MovimentacaoInput;
-import org.example.financeiro.movimentacao.model.MovimentacaoOutput;
+import org.example.financeiro.movimentacao.model.MovimentacaoDto;
 import org.example.user.UsersAutenticatedUtils;
 import org.example.financeiro.movimentacao.repository.MovimentacaoRepository;
 import org.example.user.repository.UserRepository;
@@ -40,21 +40,17 @@ public class MovimentacaoService {
         return repository.findAll();
     }
 
-    public List<MovimentacaoOutput> getAllMovimentacoes() {
+    public List<MovimentacaoDto> getAllMovimentacoes() {
         List<Movimentacao> movimentacoes = repository.findAllByUserId(usersAutenticatedUtils.getAuthenticatedUserId());  // ou sua lógica para buscar as movimentações
 
         return movimentacoes.stream()
-                .map(movimentacao -> new MovimentacaoOutput(
+                .map(movimentacao -> new MovimentacaoDto(
                         movimentacao.getData(),
                         movimentacao.getValor(),
                         movimentacao.getConfiguracaoAtivo().getNome(),
                         movimentacao.getTipoMovimentacao().getDescription()
                 ))
                 .collect(Collectors.toList());
-    }
-
-    public List<Movimentacao> findByIdAtivoAndTipoMovimentacao(Long idAtivo, TipoMovimentacao tipoMovimentacao) {
-        return repository.findByConfiguracaoAtivoIdAndTipoMovimentacaoOrderByDataDesc(idAtivo, tipoMovimentacao);
     }
 
     public void salvarMovimentacao(Movimentacao movimentacao) {

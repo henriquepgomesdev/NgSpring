@@ -2,6 +2,7 @@ package org.example.financeiro.selic.controllers;
 
 import jakarta.validation.Valid;
 import org.example.financeiro.selic.domain.Selic;
+import org.example.financeiro.selic.model.SelicDto;
 import org.example.financeiro.selic.model.SelicInput;
 import org.example.financeiro.selic.service.SelicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class SelicController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Selic>> list() {
+    public ResponseEntity<List<SelicDto>> list() {
         System.out.println("Requisicao ok");
         return ResponseEntity.ok(service.getAll());
     }

@@ -2,6 +2,8 @@ package org.example.financeiro.cdi.service;
 
 
 import org.example.financeiro.cdi.domain.Cdi;
+import org.example.financeiro.cdi.mapper.CdiMapper;
+import org.example.financeiro.cdi.model.CdiDto;
 import org.example.financeiro.cdi.model.CdiInput;
 import org.example.financeiro.cdi.repository.CdiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,17 @@ public class CdiService {
     @Autowired
     private CdiRepository repository;
 
+    @Autowired
+    private CdiMapper mapper;
+
     public void create(CdiInput input) {
         repository.save(new Cdi(input));
     }
 
-    public List<Cdi> getAll() {
-        return repository.findAll();
+    public List<CdiDto> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 }

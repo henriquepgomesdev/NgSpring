@@ -3,7 +3,7 @@ package org.example.financeiro.movimentacao.controllers;
 import jakarta.validation.Valid;
 import org.example.financeiro.movimentacao.enums.TipoMovimentacao;
 import org.example.financeiro.movimentacao.model.MovimentacaoInput;
-import org.example.financeiro.movimentacao.model.MovimentacaoOutput;
+import org.example.financeiro.movimentacao.model.MovimentacaoDto;
 import org.example.financeiro.movimentacao.service.MovimentacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +48,7 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<MovimentacaoOutput>> list() {
+    public ResponseEntity<List<MovimentacaoDto>> list() {
         System.out.println("Requisicao ok");
         return ResponseEntity.ok(service.getAllMovimentacoes());
     }

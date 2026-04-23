@@ -3,6 +3,7 @@ package org.example.financeiro.configuracaoativo.service;
 
 import org.example.financeiro.configuracaoativo.domain.ConfiguracaoAtivo;
 import org.example.financeiro.configuracaoativo.mapper.ConfiguracaoAtivoMapper;
+import org.example.financeiro.configuracaoativo.model.ConfiguracaoAtivoDto;
 import org.example.financeiro.configuracaoativo.model.ConfiguracaoAtivoInput;
 import org.example.financeiro.configuracaoativo.repository.ConfiguracaoAtivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,10 @@ public class ConfiguracaoAtivoService {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Configuração não encontrada!"));
     }
 
-    public List<ConfiguracaoAtivo> getAll() {
-        return repository.findAll();
+    public List<ConfiguracaoAtivoDto> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 }

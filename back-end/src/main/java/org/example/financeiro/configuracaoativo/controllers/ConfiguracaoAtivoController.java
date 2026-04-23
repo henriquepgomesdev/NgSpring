@@ -2,6 +2,7 @@ package org.example.financeiro.configuracaoativo.controllers;
 
 import jakarta.validation.Valid;
 import org.example.financeiro.configuracaoativo.domain.ConfiguracaoAtivo;
+import org.example.financeiro.configuracaoativo.model.ConfiguracaoAtivoDto;
 import org.example.financeiro.configuracaoativo.model.ConfiguracaoAtivoInput;
 import org.example.financeiro.configuracaoativo.service.ConfiguracaoAtivoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class ConfiguracaoAtivoController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ConfiguracaoAtivo>> list() {
+    public ResponseEntity<List<ConfiguracaoAtivoDto>> list() {
         System.out.println("Requisicao ok");
         return ResponseEntity.ok(service.getAll());
     }
